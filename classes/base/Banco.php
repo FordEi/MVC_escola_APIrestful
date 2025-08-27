@@ -50,7 +50,12 @@
 			$this->Desconectar();
 			return $dados;
 		} catch (PDOException $e) {
-			throw $e;
+			$mensagemOriginal =  $e->getMessage();
+			$dadosMensagem = explode(':', $mensagemOriginal);
+			$textoMensagem = $dadosMensagem[2];
+			$mensagemFinal = substr($textoMensagem, 5);
+			$mensagemFinal = trim($mensagemFinal);
+			throw new Exception($mensagemFinal);
 		}
 	}
 
@@ -78,7 +83,12 @@
 			$this->cSQL->execute();
 			$this->Desconectar();
 		} catch (PDOException $e) {
-			throw $e;
+			$mensagemOriginal =  $e->getMessage();
+			$dadosMensagem = explode(':', $mensagemOriginal);
+			$textoMensagem = $dadosMensagem[2];
+			$mensagemFinal = substr($textoMensagem, 5);
+			$mensagemFinal = trim($mensagemFinal);
+			throw new Exception($mensagemFinal);
 		}
 	}
 }

@@ -30,7 +30,7 @@ if (txtLogin && txtSenha && btnEntrar) {
         .catch(function(erro) {
             console.error(erro);
         })
-
+        
         // console.log('Usuario OK');
     })
 }
