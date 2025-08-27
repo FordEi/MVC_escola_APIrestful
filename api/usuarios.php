@@ -8,11 +8,23 @@
 	switch ($metodo) {
 		case 'GET':
 			$tipo = 0;
+			$supostoLogin = null;
+			$supostaSenha = null;
 			if(isset($_GET['t']) && $_GET['t'] != ''){
 				$tipo = $_GET['t'];
 			}
+
+			if((isset($_GET['l']) && $_GET['l'] != '') && (isset($_GET['s']) && $_GET['s'] != '')){
+				$supostoLogin = $_GET['l'];
+				$supostaSenha = $_GET['s'];
+			}
+
 			try{
-				$dados = $controller->Listar($tipo);
+				if($supostoLogin && $supostaSenha) {
+					$dados = $controller->VerificarAcesso($supostoLogin, $supostaSenha);
+				}else{
+					$dados = $controller->Listar($tipo);
+				}
 				http_response_code(200);
 				echo json_encode($dados);
 			}

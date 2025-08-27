@@ -20,7 +20,18 @@ if (txtLogin && txtSenha && btnEntrar) {
             return;
         }
 
-        console.log('Usuario OK');
+        fetch(`api/usuarios.php?l=${txtLogin.value.trim()}&s=${txtSenha.value.trim()}`)
+        .then(function(respostaRequisicao) {
+            return respostaRequisicao.json();
+        })
+        .then(function(dadosJSON) {
+            console.log(dadosJSON);
+        })
+        .catch(function(erro) {
+            console.error(erro);
+        })
+
+        // console.log('Usuario OK');
     })
 }
 

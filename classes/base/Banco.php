@@ -50,7 +50,7 @@
 			$this->Desconectar();
 			return $dados;
 		} catch (PDOException $e) {
-			throw new Exception('Erro inesperado na Consulta. Tente novamente.');
+			throw $e;
 		}
 	}
 
@@ -78,7 +78,7 @@
 			$this->cSQL->execute();
 			$this->Desconectar();
 		} catch (PDOException $e) {
-			throw new Exception('Erro inesperado na Execução. Tente novamente.');
+			throw $e;
 		}
 	}
 }

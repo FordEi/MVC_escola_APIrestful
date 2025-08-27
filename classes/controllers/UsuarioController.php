@@ -49,5 +49,18 @@ class UsuarioController extends Banco {
             throw $th;
         }
     }
+
+    public function VerificarAcesso($email,$senha) {
+        try {
+            $parametros = [
+                'pEmail'=>$email,
+                'pSenha'=>$senha
+            ];
+            $dados = $this->Consultar("verificarAcesso", $parametros);
+            return $dados;
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
 }
 ?>
